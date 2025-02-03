@@ -22,8 +22,8 @@
 #include <Cross Platform Shim\compat.h>
 #include <controller.h>
 #include <spb.h>
-#include <nt36672c\ntinternal.h>
-#include <nt36672c\ntfwupdate.h>
+#include <nt36675\ntinternal.h>
+#include <nt36675\ntfwupdate.h>
 #include <internal.h>
 #include <touch_power\touch_power.h>
 #include <power.tmh>
@@ -206,7 +206,7 @@ TchPowerSettingCallback(
             }
             /*else {
                 //Write command to enter "deep sleep mode" if wake up gesture is disabled
-                SpbWriteDataSynchronously(SpbContext, SPI_WRITE_MASK(nt36672c_EVT_HOST_CMD), buf, 1);
+                SpbWriteDataSynchronously(SpbContext, SPI_WRITE_MASK(nt36675_EVT_HOST_CMD), buf, 1);
             }*/
 
             if (!NT_SUCCESS(status))

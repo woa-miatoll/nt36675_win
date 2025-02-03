@@ -21,7 +21,7 @@
 
 #include <Cross Platform Shim\compat.h>
 #include <spb.h>
-#include <nt36672c\ntinternal.h>
+#include <nt36675\ntinternal.h>
 #include <init.tmh>
 
 NTSTATUS

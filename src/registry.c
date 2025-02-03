@@ -21,7 +21,7 @@
 
 --*/
 
-#include <nt36672c\ntinternal.h>
+#include <nt36675\ntinternal.h>
 #include <registry.tmh>
 #include <internal.h>
 

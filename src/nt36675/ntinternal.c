@@ -21,8 +21,8 @@
 #include <Cross Platform Shim\compat.h>
 #include <spb.h>
 #include <report.h>
-#include <nt36672c\ntinternal.h>
-#include <nt36672c\ntfwupdate.h>
+#include <nt36675\ntinternal.h>
+#include <nt36675\ntfwupdate.h>
 #include <ntinternal.tmh>
 
 NTSTATUS
@@ -67,18 +67,18 @@ NT36XConfigureFunctions(
     delay.QuadPart = RELATIVE(MILLISECONDS(10));
     KeDelayExecutionThread(KernelMode, TRUE, &delay);
 
-    nt36672c_eng_reset(SpbContext);
+    nt36675_eng_reset(SpbContext);
 
-    if (nt36672c_bootloader_reset(SpbContext)) {
+    if (nt36675_bootloader_reset(SpbContext)) {
         Trace(
             TRACE_LEVEL_ERROR,
             TRACE_INTERRUPT,
             "Can't reset the nvt IC");
     }
 
-    nt36672c_set_page(SpbContext, nt36672c_PAGE_CHIP_INFO);
+    nt36675_set_page(SpbContext, nt36675_PAGE_CHIP_INFO);
 
-    SpbReadDataSynchronously(SpbContext, SPI_READ_MASK(nt36672c_PAGE_CHIP_INFO & nt36672c_EVT_CHIPID), dataBuffer, sizeof(dataBuffer), FALSE);
+    SpbReadDataSynchronously(SpbContext, SPI_READ_MASK(nt36675_PAGE_CHIP_INFO & nt36675_EVT_CHIPID), dataBuffer, sizeof(dataBuffer), FALSE);
 
     Trace(
         TRACE_LEVEL_INFORMATION,
@@ -91,7 +91,7 @@ NT36XConfigureFunctions(
     return STATUS_SUCCESS;
 }
 
-struct nt36672c_abs_object {
+struct nt36675_abs_object {
     unsigned short x;
     unsigned short y;
     unsigned short z;
@@ -130,8 +130,8 @@ Return Value:
     NT36X_CONTROLLER_CONTEXT* controller;
     controller = (NT36X_CONTROLLER_CONTEXT*)ControllerContext;
 
-    struct nt36672c_abs_object objd = { 0, 0, 0, 0 };
-    struct nt36672c_abs_object* obj = &objd;
+    struct nt36675_abs_object objd = { 0, 0, 0, 0 };
+    struct nt36675_abs_object* obj = &objd;
 
     //enable TchTranslateToDisplayCoordinates in report.c
 
